@@ -1,0 +1,80 @@
+---
+# tasks file for sosreport
+- name: test veriables and environment
+  assert:
+    that:
+      - sosreport_package_state is defined
+      - sosreport_package_state == "present" or
+        sosreport_package_state == "latest" or
+        sosreport_package_state == "absent"
+      - sosreport_ignore_docker is defined
+      - sosreport_ignore_docker or
+        not sosreport_ignore_docker
+
+- name: install sosreport
+  package:
+    name: "{{ sosreport_packages }}"
+    state: "{{ sosreport_package_state }}"
+  register: sosreport_install_sosreport
+  until: sosreport_install_sosreport is succeeded
+  retries: 3
+
+- name: create remote directory
+  file:
+    path: "{{ sosreport_remote_location }}"
+    state: directory
+
+- name: store total diskspace
+  shell: df -P {{ sosreport_remote_location }} | tail -n1 | awk '{ print $2 }'
+  changed_when: no
+  register: sosreport_store_total_diskspace
+
+- name: store free diskspace
+  shell: du -sk {{ sosreport_remote_location }} | awk '{ print $1 }'
+  changed_when: no
+  register: sosreport_store_free_diskspace
+
+- name: assert free disk space
+  assert:
+    that:
+      - sosreport_store_total_diskspace.stdout | int - sosreport_store_free_diskspace.stdout | int >= sosreport_required_space | int / 1024
+
+- name: find sosreports
+  find:
+    paths: "{{ sosreport_remote_location }}"
+    patterns: "{{ sosreport_patterns }}"
+  register: sosreport_find_sosreports
+
+- name: run sosreport
+  command: "{{ sosreport_command }}"
+  tags:
+    - skip_ansible_lint
+  when:
+    - sosreport_find_sosreports.matched | int == 0
+
+- name: create local directory
+  file:
+    path: "{{ sosreport_local_location }}"
+    state: directory
+  delegate_to: localhost
+  run_once: yes
+  become: no
+
+- name: find sosreports
+  find:
+    paths: "{{ sosreport_remote_location }}"
+    patterns: "{{ sosreport_patterns }}"
+  register: sosreport_find_sosreport
+
+- name: fetch sosreports
+  fetch:
+    src: "{{ item.path }}"
+    dest: "{{ sosreport_local_location }}/"
+    flat: yes
+  with_items:
+    - "{{ sosreport_find_sosreport.files }}"
+  when:
+    - sosreport_find_sosreport is defined
+    - sosreport_find_sosreport.files is defined
+  loop_control:
+    label: item.path | basename

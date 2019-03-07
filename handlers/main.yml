@@ -1,0 +1,8 @@
+---
+# handlers file for sosreport
+- name: restart sosreport
+  service:
+    name: "{{ sosreport_service }}"
+    state: restarted
+  when:
+    - ansible_virtualization_type != "docker" or sosreport_ignore_docker
