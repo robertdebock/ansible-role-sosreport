@@ -10,6 +10,9 @@
       - sosreport_ignore_docker is defined
       - sosreport_ignore_docker or
         not sosreport_ignore_docker
+      - sosreport_remote_location is defined
+      - sosreport_local_location is defined
+      - sosreport_required_space is defined
 
 - name: install sosreport
   package:
