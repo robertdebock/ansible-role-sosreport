@@ -20,7 +20,6 @@ This example is taken from `molecule/default/playbook.yml`:
   roles:
     - role: robertdebock.bootstrap
     - role: robertdebock.sosreport
-
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.
@@ -38,13 +37,6 @@ sosreport_remote_location: /tmp/sosreport
 
 # Where to store the sosreport(s) on the controller.
 sosreport_local_location: /tmp/sosreports
-
-# How much space needs to be available in megaytes.
-sosreport_required_space: 75
-
-# To update packages this role places on the system, set `sosreport_package_state` to `latest`.
-sosreport_package_state: present
-
 ```
 
 Requirements

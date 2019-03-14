@@ -3,15 +3,43 @@ dependency:
   name: galaxy
   options:
     role-file: requirements.yml
-driver:
-  name: docker
 lint:
   name: yamllint
+driver:
+  name: docker
 platforms:
+  - name: sosreport-alpine-edge
+    image: alpine:edge
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: sosreport-alpine-latest
+    image: alpine:latest
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: sosreport-archlinux
+    image: archlinux/base
   - name: sosreport-centos-6
     image: centos:6
   - name: sosreport-centos-latest
     image: centos:latest
+  - name: sosreport-debian-latest
+    image: debian:latest
+  - name: sosreport-debian-stable
+    image: debian:stable
+  - name: sosreport-debian-unstable
+    image: debian:unstable
+  - name: sosreport-fedora-latest
+    image: fedora:latest
+  - name: sosreport-fedora-rawhide
+    image: fedora:rawhide
+  - name: sosreport-opensuse-leap
+    image: opensuse:leap
+  - name: sosreport-ubuntu-latest
+    image: ubuntu:latest
+  - name: sosreport-ubuntu-rolling
+    image: ubuntu:rolling
+  - name: sosreport-ubuntu-devel
+    image: ubuntu:devel
+  - name: sosreport-ubuntu-latest
+    image: ubuntu:latest
 provisioner:
   name: ansible
   lint:

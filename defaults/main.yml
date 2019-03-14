@@ -6,9 +6,3 @@ sosreport_remote_location: /tmp/sosreport
 
 # Where to store the sosreport(s) on the controller.
 sosreport_local_location: /tmp/sosreports
-
-# How much space needs to be available in megaytes.
-sosreport_required_space: 75
-
-# To update packages this role places on the system, set `sosreport_package_state` to `latest`.
-sosreport_package_state: present

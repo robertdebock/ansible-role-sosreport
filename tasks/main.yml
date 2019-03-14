@@ -3,21 +3,13 @@
 - name: test veriables and environment
   assert:
     that:
-      - sosreport_package_state is defined
-      - sosreport_package_state == "present" or
-        sosreport_package_state == "latest" or
-        sosreport_package_state == "absent"
-      - sosreport_ignore_docker is defined
-      - sosreport_ignore_docker or
-        not sosreport_ignore_docker
       - sosreport_remote_location is defined
       - sosreport_local_location is defined
-      - sosreport_required_space is defined
 
 - name: install sosreport
   package:
     name: "{{ sosreport_packages }}"
-    state: "{{ sosreport_package_state }}"
+    state: present
   register: sosreport_install_sosreport
   until: sosreport_install_sosreport is succeeded
   retries: 3
@@ -26,21 +18,6 @@
   file:
     path: "{{ sosreport_remote_location }}"
     state: directory
-
-- name: store total diskspace
-  shell: df -P {{ sosreport_remote_location }} | tail -n1 | awk '{ print $2 }'
-  changed_when: no
-  register: sosreport_store_total_diskspace
-
-- name: store free diskspace
-  shell: du -sk {{ sosreport_remote_location }} | awk '{ print $1 }'
-  changed_when: no
-  register: sosreport_store_free_diskspace
-
-- name: assert free disk space
-  assert:
-    that:
-      - sosreport_store_total_diskspace.stdout | int - sosreport_store_free_diskspace.stdout | int >= sosreport_required_space | int / 1024
 
 - name: find sosreports
   find:
