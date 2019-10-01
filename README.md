@@ -6,6 +6,9 @@ sosreport
 
 Install, run and collect sosreports from your systems.
 
+<img src="https://img.shields.io/ansible/role/d/38477"/>
+<img src="https://img.shields.io/ansible/quality/38477"/>
+
 Example Playbook
 ----------------
 
@@ -65,6 +68,17 @@ The following roles can be installed to ensure all requirements are met, using `
 
 ```
 
+This role uses the following modules:
+```yaml
+---
+- command
+- fetch
+- file
+- find
+- package
+- service
+```
+
 Context
 -------
 
@@ -85,6 +99,9 @@ This role has been tested against the following distributions and Ansible versio
 |centos-latest|yes|yes|yes*|
 
 A single star means the build may fail, it's marked as an experimental build.
+
+
+
 
 Testing
 -------
