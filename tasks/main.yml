@@ -1,11 +1,5 @@
 ---
 # tasks file for sosreport
-- name: test veriables and environment
-  assert:
-    that:
-      - sosreport_remote_location is defined
-      - sosreport_local_location is defined
-
 - name: install sosreport
   package:
     name: "{{ sosreport_packages }}"
