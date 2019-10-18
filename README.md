@@ -108,6 +108,18 @@ This role has been tested on these Ansible versions:
 
 The indicator '~=' means [compatible with](https://www.python.org/dev/peps/pep-0440/#compatible-release). For example 'ansible~=2.8' would pick the latest ansible-2.8, for example ansible-2.8.5.
 
+Exceptions
+----------
+
+Some variarations of the build matrix do not work. These are the variations and reasons why the build won't work:
+
+| variation                 | reason                 |
+|---------------------------|------------------------|
+| Alpine | Stratis is not available. |
+| CentOS-7 | Stratis is not available. |
+| Debian | Stratis is not available. |
+| openSUSE Leap | Stratis is not available. |
+| Ubuntu | Stratis is not available. |
 
 
 
