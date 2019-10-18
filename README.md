@@ -115,11 +115,10 @@ Some variarations of the build matrix do not work. These are the variations and 
 
 | variation                 | reason                 |
 |---------------------------|------------------------|
-| Alpine | Stratis is not available. |
-| CentOS-7 | Stratis is not available. |
-| Debian | Stratis is not available. |
-| openSUSE Leap | Stratis is not available. |
-| Ubuntu | Stratis is not available. |
+| Alpine | sosreport is not available. |
+| Debian | sosreport is not available. |
+| openSUSE Leap | sosreport is not available. |
+| Ubuntu | sosreport is not available. |
 
 
 
