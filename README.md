@@ -6,8 +6,8 @@ sosreport
 
 Install, run and collect sosreports from your systems.
 
-<img src="https://img.shields.io/ansible/role/d/38477"/>
-<img src="https://img.shields.io/ansible/quality/38477"/>
+<img src="https://img.shields.io/ansible/role/d/"/>
+<img src="https://img.shields.io/ansible/quality/"/>
 
 Example Playbook
 ----------------
@@ -93,12 +93,12 @@ Compatibility
 
 This role has been tested on these [container images](https://hub.docker.com/):
 
-|container|allow_failures|
-|---------|--------------|
-|docker-centos-systemd|no|
-|docker-centos-systemd|no|
-|docker-fedora-systemd|yes|
-|docker-fedora-systemd|yes|
+|container|tag|allow_failures|
+|---------|---|--------------|
+|docker-centos-systemd|7|no|
+|docker-redhat-systemd|7|no|
+|docker-centos-systemd|latest|no|
+|docker-redhat-systemd|latest|no|
 
 This role has been tested on these Ansible versions:
 
@@ -106,7 +106,7 @@ This role has been tested on these Ansible versions:
 - ansible~=2.8
 - git+https://github.com/ansible/ansible.git@devel
 
-The indicator '~=' means [compatible with](https://www.python.org/dev/peps/pep-0440/#compatible-release). For example 'ansible~=2.8' would pick the latest ansible-2.8, for example ansible-2.8.5.
+The indicator '\~=' means [compatible with](https://www.python.org/dev/peps/pep-0440/#compatible-release). For example 'ansible\~=2.8' would pick the latest ansible-2.8, for example ansible-2.8.6.
 
 Exceptions
 ----------
