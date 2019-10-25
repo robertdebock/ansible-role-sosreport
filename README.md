@@ -6,8 +6,8 @@ sosreport
 
 Install, run and collect sosreports from your systems.
 
-<img src="https://img.shields.io/ansible/role/d/"/>
-<img src="https://img.shields.io/ansible/quality/"/>
+<img src="https://img.shields.io/ansible/role/d/38477"/>
+<img src="https://img.shields.io/ansible/quality/38477"/>
 
 Example Playbook
 ----------------
@@ -95,10 +95,10 @@ This role has been tested on these [container images](https://hub.docker.com/):
 
 |container|tag|allow_failures|
 |---------|---|--------------|
-|docker-centos-systemd|7|no|
-|docker-redhat-systemd|7|no|
-|docker-centos-systemd|latest|no|
-|docker-redhat-systemd|latest|no|
+|centos|7|no|
+|redhat|7|no|
+|centos|latest|no|
+|redhat|latest|no|
 
 This role has been tested on these Ansible versions:
 
