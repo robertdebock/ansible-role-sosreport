@@ -16,7 +16,6 @@ galaxy_info:
   galaxy_tags:
     - sosreport
     - centos
-    - el
     - rhel
 
 dependencies: []
