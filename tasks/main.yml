@@ -45,8 +45,7 @@
     src: "{{ item.path }}"
     dest: "{{ sosreport_local_location }}/"
     flat: yes
-  with_items:
-    - "{{ sosreport_find_sosreport.files }}"
+  loop: "{{ sosreport_find_sosreport.files }}"
   when:
     - sosreport_find_sosreport is defined
     - sosreport_find_sosreport.files is defined
