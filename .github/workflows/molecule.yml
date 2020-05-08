@@ -36,6 +36,10 @@ jobs:
             tag: "7"
           - image: "centos"
             tag: "latest"
+          - image: "fedora"
+            tag: "31"
+          - image: "fedora"
+            tag: "latest"
     steps:
       - name: checkout
         uses: actions/checkout@v2
