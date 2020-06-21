@@ -1,5 +1,8 @@
 ---
 # tasks file for sosreport
+- name: include assert.yml
+  include_tasks: assert.yml
+
 - name: install sosreport
   package:
     name: "{{ sosreport_packages }}"
