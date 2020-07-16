@@ -7,9 +7,6 @@
   package:
     name: "{{ sosreport_packages }}"
     state: present
-  register: sosreport_install_sosreport
-  until: sosreport_install_sosreport is succeeded
-  retries: 3
 
 - name: create remote directory
   file:
