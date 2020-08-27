@@ -12,6 +12,7 @@
   file:
     path: "{{ sosreport_remote_location }}"
     state: directory
+    mode: "0755"
 
 - name: find sosreports
   find:
@@ -30,6 +31,7 @@
   file:
     path: "{{ sosreport_local_location }}"
     state: directory
+    mode: "0644"
   delegate_to: localhost
   run_once: yes
   become: no
