@@ -31,7 +31,7 @@
   file:
     path: "{{ sosreport_local_location }}"
     state: directory
-    mode: "0644"
+    mode: "0755"
   delegate_to: localhost
   run_once: yes
   become: no
