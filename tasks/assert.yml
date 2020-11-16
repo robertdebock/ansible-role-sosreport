@@ -3,12 +3,10 @@
   assert:
     that:
       - sosreport_remote_location is defined
-      - sosreport_remote_location | length > 0
     quiet: yes
 
 - name: test if sosreport_local_location is set correctly
   assert:
     that:
       - sosreport_local_location is defined
-      - sosreport_local_location | length > 0
     quiet: yes
