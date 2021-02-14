@@ -1,14 +1,14 @@
 ---
 
 - name: test if sosreport_remote_location is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - sosreport_remote_location is defined
       - sosreport_remote_location is string
     quiet: yes
 
 - name: test if sosreport_local_location is set correctly
-  assert:
+  ansible.builtin.assert:
     that:
       - sosreport_local_location is defined
       - sosreport_local_location is string
