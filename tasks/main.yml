@@ -7,18 +7,18 @@
   delegate_to: localhost
 
 - name: install sosreport
-  package:
+  ansible.builtin.package:
     name: "{{ sosreport_packages }}"
     state: present
 
 - name: create remote directory
-  file:
+  ansible.builtin.file:
     path: "{{ sosreport_remote_location }}"
     state: directory
     mode: "0755"
 
 - name: find sosreports
-  find:
+  ansible.builtin.find:
     paths: "{{ sosreport_remote_location }}"
     patterns: "{{ sosreport_patterns }}"
   register: sosreport_find_sosreports
@@ -31,7 +31,7 @@
     - sosreport_find_sosreports.matched | int == 0
 
 - name: create local directory
-  file:
+  ansible.builtin.file:
     path: "{{ sosreport_local_location }}"
     state: directory
     mode: "0755"
@@ -40,13 +40,13 @@
   become: no
 
 - name: find sosreports
-  find:
+  ansible.builtin.find:
     paths: "{{ sosreport_remote_location }}"
     patterns: "{{ sosreport_patterns }}"
   register: sosreport_find_sosreport
 
 - name: fetch sosreports
-  fetch:
+  ansible.builtin.fetch:
     src: "{{ item.path }}"
     dest: "{{ sosreport_local_location }}/"
     flat: yes
