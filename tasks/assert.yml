@@ -5,6 +5,7 @@
     that:
       - sosreport_remote_location is defined
       - sosreport_remote_location is string
+      - sosreport_remote_location is not none
     quiet: yes
 
 - name: assert | Test if sosreport_local_location is set correctly
@@ -12,4 +13,5 @@
     that:
       - sosreport_local_location is defined
       - sosreport_local_location is string
+      - sosreport_local_location is not none
     quiet: yes
