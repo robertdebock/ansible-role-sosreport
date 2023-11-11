@@ -1,4 +1,4 @@
-# [sosreport](#sosreport)
+# Ansible role [sosreport](#sosreport)
 
 Install, run and collect sosreports from your systems.
 
@@ -77,8 +77,8 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/robertdebock/enterpriselinux/general)|8, 9|
-|[Fedora](https://hub.docker.com/repository/docker/robertdebock/fedora/general)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|8, 9|
+|[Fedora](https://hub.docker.com/r/robertdebock/fedora/)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
