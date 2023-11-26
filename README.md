@@ -1,4 +1,4 @@
-# Ansible role [sosreport](#sosreport)
+# [Ansible role sosreport](#sosreport)
 
 Install, run and collect sosreports from your systems.
 
