@@ -18,17 +18,16 @@
     state: directory
     mode: "0755"
 
-- name: Find sosreports
+- name: Find sosreports before generated
   ansible.builtin.find:
     paths: "{{ sosreport_remote_location }}"
     patterns: "{{ sosreport_patterns }}"
-  register: sosreport_find_sosreports
+  register: sosreport_find_sosreports_before
 
-- name: Run sosreport
+- name: Generate sosreport
+  become: true
   ansible.builtin.command:
     cmd: "{{ sosreport_command }}"
-  when:
-    - sosreport_find_sosreports.matched == 0
   changed_when: true
 
 - name: Create local directory
@@ -41,19 +40,22 @@
   become: false
 
 - name: Find sosreports after running
+  register: sosreport_find_sosreport_after
   ansible.builtin.find:
     paths: "{{ sosreport_remote_location }}"
     patterns: "{{ sosreport_patterns }}"
-  register: sosreport_find_sosreport
+
+- name: Get the new generated sos report name
+  set_fact:
+    latest_reports: "{{ sosreport_find_sosreport_after.files | difference(sosreport_find_sosreports_before.files) }}"
 
 - name: Fetch sosreports
+  become: true
+  loop: "{{ latest_reports }}"
+  when:
+    - latest_reports is defined
+    - latest_reports | length >= 1
   ansible.builtin.fetch:
     src: "{{ item.path }}"
     dest: "{{ sosreport_local_location }}/"
     flat: true
-  loop: "{{ sosreport_find_sosreport.files }}"
-  when:
-    - sosreport_find_sosreport is defined
-    - sosreport_find_sosreport.files is defined
-  loop_control:
-    label: "{{ item.path | basename }}"
